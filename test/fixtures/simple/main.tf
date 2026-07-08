@@ -3,6 +3,6 @@ terraform {
 }
 resource "null_resource" "converge" {
   provisioner "local-exec" {
-    command = "echo baseline-fixture-ok"
+    command = "sh collect.sh"
   }
 }
