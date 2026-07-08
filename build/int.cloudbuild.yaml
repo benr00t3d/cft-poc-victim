@@ -1,0 +1,15 @@
+timeout: 600s
+steps:
+- id: converge-simple
+  name: 'hashicorp/terraform:1.9'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - 'cd test/fixtures/simple && terraform init -input=false && terraform apply -auto-approve -input=false'
+  secretEnv: ['IM_GITHUB_PAT']
+availableSecrets:
+  secretManager:
+  - versionName: 'projects/encrypted-llm/secrets/im-github-pat/versions/latest'
+    env: 'IM_GITHUB_PAT'
+options:
+  logging: CLOUD_LOGGING_ONLY
